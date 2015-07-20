@@ -13,7 +13,7 @@ $(document).ready(function () {
 		var result = startValue;
 
 		for (var i = 0; i < array.length; i++) {
-			result = callback(result, array[i]);
+			result = callback(result, array[i], i, array);
 		}
 
 		return result;
@@ -28,6 +28,16 @@ $(document).ready(function () {
 		var result = prevValue * currentValue;
 		return result;
 	}
+	function average(previousValue, currentValue, index, array) {
+		if (index === (array.length - 1)) {
+			var averageResult = (previousValue + currentValue) / array.length;
+			return averageResult;
+		}
+
+		var result = previousValue + currentValue;
+		return result;
+	}
+
 
 	// Test examples
 	var arr = [1, 2, 3, 4, 5];
@@ -39,6 +49,8 @@ $(document).ready(function () {
 	folding(arr, mul, 1); // 120
 
 	folding(arr, mul, 2); // 240
+
+	folding(arr, average, 0); // 3
 
 	// Other initialize
 	// ...
