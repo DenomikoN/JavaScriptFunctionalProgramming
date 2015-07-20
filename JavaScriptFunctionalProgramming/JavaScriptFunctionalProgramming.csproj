@@ -65,11 +65,25 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Task 2.09\first.js" />
+    <Content Include="index.html" />
+    <Content Include="Task 2.03\linear-fold.js" />
+    <Content Include="Task 2.01\partial-application.js" />
+    <Content Include="Task 2.02\currying.js" />
+    <Content Include="Task 2.04\linear-unfold.js" />
+    <Content Include="Task 2.05\map.js" />
+    <Content Include="Task 2.06\filter.js" />
+    <Content Include="Task 2.07\average-of-even.js" />
+    <Content Include="Task 2.08\sum-of-random-numbers.js" />
+    <Content Include="Task 2.10\lazy-evaluation.js" />
+    <Content Include="Task 2.11\memoization.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
