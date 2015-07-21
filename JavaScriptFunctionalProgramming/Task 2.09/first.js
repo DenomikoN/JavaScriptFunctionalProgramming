@@ -17,10 +17,27 @@ $(document).ready(function () {
 	}
 
 	// Test examples
-	var array = [1, 3, -3, 6, 0, 10, 500, 54, 12, "string item", 1024];
+	function negative(number) {
+		if (isNaN(number)) {
+			return undefined;
+		}
+		var result = number < 0;
+		return result;
+	}
 
-	first(array, function () { return true; }); // 1
-	first(array, function (item) { return (item % 2) === 0; }); // 6
-	first(array, function (item) { return item < 0; }); // -3
-	first(array, function (item) { return (typeof item) === "string"; }); // "string item"
+	// Initialize
+	$("#bFirst").on("click", function () {
+
+		var textArray = util.getValue("tbFirst");
+		var array = util.parseArray(textArray);
+
+		if (!array) {
+			util.setError("vFirst", "Data entry errors!");
+			return;
+		}
+	
+		var result = first(array, negative);
+
+		util.setValue("vFirst", "The first negative element: " + result);
+	});
 });

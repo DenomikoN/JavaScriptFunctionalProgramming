@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
 	// Sum of random numbers function
-	function sum(numberCount, maxNumber) {
+	function sum(numberCount, maxNumber, generatedArray) {
 		if (!numberCount) {
 			numberCount = 10;
 		}
@@ -16,6 +16,7 @@ $(document).ready(function () {
 
 		for (var i = 0; i < numberCount; i++) {
 			array[i] = Math.floor(Math.random() * (maxNumber + 1));
+
 		}
 
 		// using "folding" (Problem 3: Linear fold)
@@ -24,9 +25,34 @@ $(document).ready(function () {
 			return sum;
 		}, 0);
 
+		// return generate array
+		if (arguments.length === 3) {
+			generatedArray.push(array);
+		}
+
 		return sumResult;
 	}
 
-	// Test examples
-	sum(10, 100); // sum of 10 random numbers, where item max value of 100
+	// Test example
+	// Initialize
+	$("#bSum").on("click", function () {
+
+		var strCount = util.getValue("tbSum");
+		var strMaxValue = util.getValue("tbSumMaxValue");
+
+		if (isNaN(strCount) || isNaN(strMaxValue)) {
+			util.setError("vSum", "Data entry errors!");
+			return;
+		}
+
+		var count = parseInt(strCount);
+		var maxValue = parseInt(strMaxValue);
+		var array = [];
+
+		var result = sum(count, maxValue, array);
+
+		util.setValue("vSum", "Sum of [" + array + "]: " + result);
+	});
+	
+
 });

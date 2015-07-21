@@ -2,7 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>JavaScript Functional Programming</title>
+	<link href="Styles/reset.css" rel="stylesheet" />
+	<link href="Styles/style.css" rel="stylesheet" />
+
 	<script src="Scripts/jquery-1.11.3.min.js"></script>
+	<script src="Scripts/util.js"></script>
+
 	<script src="Task 2.01/partial-application.js"></script>
 	<script src="Task 2.02/currying.js"></script>
 	<script src="Task 2.03/linear-fold.js"></script>
@@ -16,6 +21,196 @@
 	<script src="Task 2.11/memoization.js"></script>
 </head>
 <body>
-	 
+	<div class="head-container">
+		<p class="head-font">JavaScript Functional Programming</p>
+	</div>
+	<div class="content">
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 1: Partial Application</p>
+			</div>
+			<div class="form">
+				<div class="radio-container">
+					<label>Methods of partial: <input type="radio" id="rbPartialAppAdd" name="rbPartialApp" checked="checked" />add</label>
+					<label> <input type="radio" name="rbPartialApp" />mul</label>
+				</div>
+				<div class="text-box-container">
+					<label class="label">Params of partial: <input type="text" id="tbPartialAppParams" class="text-box" value="2, 3" /></label>
+					<input type="button" id="bPartialAppCreate" value="Create Partial App" />
+				</div>
+				<div class="text-box-container">
+					<label class="label">Params of method: <input type="text" id="tbPartialParamsMethod" class="text-box" value="1, 4, 5" /></label>
+				</div>
+				<div class="button-container">
+					<input type="button" id="bPartialApp" class="button" value="Calculate" />
+				</div>
+			</div>
+			<div class="result-container">
+				<p id="vPartialApp" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 2: Currying</p>
+			</div>
+			<div class="form">
+				<div class="text-box-container">
+					<label class="label">Params of curring function: <input type="text" id="tbCurry" class="text-box" value="1, 2, 3" /></label>
+				</div>
+				<div class="button-container">
+					<input type="button" id="bCurry" class="button" value="Calculate" />
+				</div>
+			</div>
+			<div class="result-container">
+				<p id="vCurry" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 3: Linear fold</p>
+			</div>
+			<div class="form">
+				<div class="radio-container">
+					<label>Methods of fold:	<input type="radio" id="rbFoldAdd" name="rbFold" checked="checked" />Add</label>
+					<label>					<input type="radio" id="rbFoldMul" name="rbFold" />Mul</label>
+					<label>					<input type="radio" name="rbFold" />Average</label>
+				</div>
+				<label class="label">Start state: <input type="text" id="tbFoldStartState" value="0" /></label>
+				<div class="text-box-container">
+					<label class="label">Array: <input type="text" id="tbFoldArray" class="text-box" value="1, 2, 3, 4, 5, 6, 7, 8, 9, 10" /></label>
+					<input type="button" id="bFold" value="Folding" />
+				</div>
+
+			</div>
+			<div class="result-container">
+				<p id="vFold" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 4: Linear unfold</p>
+			</div>
+			<div class="form">
+				<div class="radio-container">
+					<label>Methods of unfold:	<input type="radio" id="rbUnfoldInc" name="rbUnfold" checked="checked" />Increment</label>
+					<label>					<input type="radio" name="rbUnfold" />Double</label>
+				</div>
+				<label class="label">Start state: <input type="text" id="tbUnfoldStartState" value="1" /></label>
+				<label class="label">, max value: <input type="text" id="tbUnfoldMaxValue" value="20" /></label>
+				<input type="button" id="bUnfold" value="Unfolding" />
+			</div>
+			<div class="result-container">
+				<p id="vUnfold" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 5: Map</p>
+			</div>
+			<div class="form">
+				<div class="radio-container">
+					<label>Methods of map:	<input type="radio" id="rbMapInc" name="rbMap" checked="checked" />Increment</label>
+					<label>					<input type="radio" id="rbMapSquare" name="rbMap" />Square</label>
+					<label>					<input type="radio" id="rbMapSqrt" name="rbMap" />Sqrt</label>
+				</div>
+				<label class="label">Enter array: <input type="text" id="tbMap" class="text-box" value="1, 2, 3, 4, 5, 6, 7, 8, 9, 10" /></label>
+				<input type="button" id="bMap" value="Maping" />
+			</div>
+			<div class="result-container">
+				<p id="vMap" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 6: Filter</p>
+			</div>
+			<div class="form">
+				<div class="radio-container">
+					<label>Methods of filter:	<input type="radio" id="rbFilterOdd" name="rbFilter" checked="checked" />Odd</label>
+					<label>						<input type="radio" name="rbFilter" />Even</label>
+				</div>
+				<label class="label">Enter array: <input type="text" id="tbFilter" class="text-box" value="1, 2, 3, 4, 5, 6, 7, 8, 9, 10" /></label>
+				<input type="button" id="bFilter" value="Filtering" />
+			</div>
+			<div class="result-container">
+				<p id="vFilter" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 7: Average of even numbers</p>
+			</div>
+			<div class="form">
+				<label class="label">Enter array: <input type="text" id="tbAverage" class="text-box" value="5, 6, 3, 4, 2, 5, 7, 9" /></label>
+				<input type="button" id="bAverage" value="Average" />
+			</div>
+			<div class="result-container">
+				<p id="vAverage" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 8: Sum of random numbers</p>
+			</div>
+			<div class="form">
+				<label class="label">Max count number of array: <input type="text" id="tbSum" value="10" /></label>
+				<label class="label">, max value: <input type="text" id="tbSumMaxValue" value="100" /></label>
+				<input type="button" id="bSum" value="Calculate" />
+			</div>
+			<div class="result-container">
+				<p id="vSum" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 9: First</p>
+			</div>
+			<div class="form">
+				<label class="label">Enter array: <input type="text" id="tbFirst" class="text-box" value="5, 0, 3, -4, 2, 5, -7, 9" /></label>
+				<div class="button-container">
+					<input type="button" id="bFirst" value="Search a first negative element" />
+				</div>
+			</div>
+			<div class="result-container">
+				<p id="vFirst" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 10: Lazy evaluation</p>
+			</div>
+			<div class="form">
+				<label class="label">Sum of array: <input type="text" id="tbLazy" class="text-box" value="1, 2, 3, 4" /></label>
+				<input type="button" id="bLazy" value="Calculate" />
+			</div>
+			<div class="result-container">
+				<p id="vLazy" class="viewer"></p>
+			</div>
+		</div>
+
+		<div class="task-container">
+			<div class="task-head-container">
+				<p class="task-head-font">Problem 11: Memoization</p>
+			</div>
+			<div class="form">
+				<label class="label">Factorial of: <input type="text" id="tbMemoization" value="4" /></label>
+				<input type="button" id="bMemoization" value="Calculate" />
+			</div>
+			<div class="result-container">
+				<p id="vMemoization" class="viewer"></p>
+			</div>
+		</div>
+
+	</div>
 </body>
 </html>

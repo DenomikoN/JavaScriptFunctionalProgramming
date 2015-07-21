@@ -24,17 +24,31 @@ $(document).ready(function () {
 		return result;
 	}
 	function sqrt(a) {
-		var result = Math.sqrt(a);
+		var result = Math.sqrt(a).toFixed(2);
 		return result;
 	}
 
 	// Test examples
-	var array = [1, 2, 3, 4, 5];
-	map(array, inc); // [2, 3, 4, 5, 6]
+	// Initialize
+	$("#bMap").on("click", function () {
 
-	array = [1, 2, 3, 4, 5];
-	map(array, square); // [1, 4, 9, 16, 25]
+		var strArray = util.getValue("tbMap");
+		var array = util.parseArray(strArray);
 
-	array = [1, 4, 9, 16, 25];
-	map(array, sqrt); // [1, 2, 3, 4, 5]
+		if (!array) {
+			util.setError("vFilter", "Data entry error!");
+		}
+
+		var result;
+
+		if (util.isChecked("rbMapInc")) {
+			result = map(array, inc);
+		} else if (util.isChecked("rbMapSquare")) {
+			result = map(array, square);
+		} else {
+			result = map(array, sqrt);
+		}
+
+		util.setValue("vMap", "Result array: [" + result + "]");
+	});
 });

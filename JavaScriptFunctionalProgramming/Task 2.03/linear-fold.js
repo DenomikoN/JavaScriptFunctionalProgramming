@@ -40,20 +40,38 @@ $(document).ready(function () {
 
 
 	// Test examples
-	var arr = [1, 2, 3, 4, 5];
+	// Initialize
+	$("#bFold").on("click", function () {
 
-	folding(arr, add, 0); // 15
+		var strStartState = util.getValue("tbFoldStartState");
+		var strArray = util.getValue("tbFoldArray");
 
-	folding(arr, add, 100); // 115
+		if (isNaN(strStartState)) {
+			util.setError("vFold", "Data entry errors!");
+			return;
+		}
 
-	folding(arr, mul, 1); // 120
+		var startState = parseInt(strStartState);
+		var array = util.parseArray(strArray);
 
-	folding(arr, mul, 2); // 240
+		if (!array) {
+			util.setError("vFold", "Data entry errors!");
+			return;
+		}
 
-	folding(arr, average, 0); // 3
+		var result;
 
-	// Other initialize
-	// ...
+		if (util.isChecked("rbFoldAdd")) {
+			result = folding(array, add, startState);
+		} else if (util.isChecked("rbFoldMul")) {
+			result = folding(array, mul, startState);
+		} else {
+			result = folding(array, average, startState);
+		}
+
+		util.setValue("vFold", "Result: " + result);
+	});
+
 	// This is for Problem 7: Average of even numbers
 	window.folding = folding;
 });

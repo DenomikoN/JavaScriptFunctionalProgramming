@@ -1,5 +1,5 @@
 ﻿// Problem 1: Partial Application
-$(document).ready(function() {
+$(document).ready(function () {
 
 	// Partial function
 	function partial(method /*, args */) {
@@ -45,5 +45,42 @@ $(document).ready(function() {
 	var mul2 = partial(mul, 2);
 	mul2(10); // 2 * 10 = 20
 	mul2(3, 4); // 2 * 3 * 4 = 24
+
+	// Partial generate function
+	var currentMethod;
+
+	// Initialize
+	$("#bPartialAppCreate").on("click", function () {
+
+		var textParams = util.getValue("tbPartialAppParams");
+		var arrayParams = util.parseArray(textParams);
+
+		var params;
+
+		if (util.isChecked("rbPartialAppAdd")) {
+			params = [add].concat(arrayParams);
+		} else {
+			params = [mul].concat(arrayParams);
+		}
+
+		currentMethod = partial.apply(partial, params);
+
+		if (currentMethod) {
+			util.setValue("vPartialApp", "Created new function.");
+		}
+	});
+	$("#bPartialApp").on("click", function () {
+
+		if (!currentMethod) {
+			util.setError("vPartialApp", "You need to create a function!");
+			return;
+		}
+
+		var textParams = util.getValue("tbPartialParamsMethod");
+		var arrayParams = util.parseArray(textParams);
+
+		var result = currentMethod.apply(currentMethod, arrayParams);
+		util.setValue("vPartialApp", "Result: " + result);
+	});
 });
 

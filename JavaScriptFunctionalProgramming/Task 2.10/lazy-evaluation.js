@@ -15,8 +15,26 @@ $(document).ready(function () {
 		return result;
 	}
 
-	// Test examples
-	var addThisLater = lazy(add, 1, 2, 3, 4, 5);
+	// Test example
+	var addThisLater = lazy(add, 1, 2, 3, 4); // 10
 
-	addThisLater(); // 15
+	// Initialize
+	$("#bLazy").on("click", function () {
+
+		var textParams = util.getValue("tbLazy");
+		var arrayParams = util.parseArray(textParams);
+
+		if (!arrayParams) {
+			util.setError("vLazy", "Data entry errors!");
+			return;
+		}
+
+		var params = [add].concat(arrayParams);
+
+		var calculateThisLater = lazy.apply(this, params);
+
+		var result = calculateThisLater();
+
+		util.setValue("vLazy", "Sum: " + result);
+	});
 });

@@ -47,4 +47,28 @@ $(document).ready(function () {
 
 	var addAll100 = curry(addAll, 3)(100);
 	addAll100(1)(2); // 100 + 1 + 2 = 103
+
+	// Initialize
+	$("#bCurry").on("click", function () {
+
+		var textParams = util.getValue("tbCurry");
+		var arrayParams = util.parseArray(textParams);
+
+		// Create currying function
+		var adder = curry(addAll, arrayParams.length);
+
+		// Calculate
+		var result = undefined;
+
+		for (var i = 0; i < arrayParams.length; i++) {
+			if (!result) {
+				result = adder(arrayParams[i]); // First invoke
+			} else {
+				// ReSharper disable once InvokedExpressionMaybeNonFunction
+				result = result(arrayParams[i]); // result(1)(2)(3)...(last) = last invoke return value is final result (Currying emulation)
+			}
+		}
+
+		util.setValue("vCurry", "Result: " + result);
+	});
 });

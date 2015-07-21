@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\util.js" />
+    <Content Include="Styles\reset.css" />
+    <Content Include="Styles\style.css" />
     <Content Include="Task 2.09\first.js" />
     <Content Include="index.html" />
     <Content Include="Task 2.03\linear-fold.js" />

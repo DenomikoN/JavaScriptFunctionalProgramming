@@ -29,7 +29,19 @@ $(document).ready(function () {
 	}
 
 	// Test examples
-	var arr = [1, 23, 2, 6, 12, 0];
+	// Initialize
+	$("#bAverage").on("click", function () {
 
-	averageOfEven(arr); // (2 + 6 + 12 + 0) / 4 = 5
+		var strArray = util.getValue("tbAverage");
+		var array = util.parseArray(strArray);
+
+		if (!array) {
+			util.setError("vAverage", "Data entry errors!");
+			return;
+		}
+
+		var result = averageOfEven(array);
+
+		util.setValue("vAverage", "Average: " + result);
+	});
 });

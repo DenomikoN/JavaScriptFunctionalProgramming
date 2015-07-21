@@ -28,8 +28,22 @@ $(document).ready(function () {
 		return result;
 	}
 
-	// Test examples
+	// Test example
 	var memoFactorial = memoize(factorial);
-	memoFactorial(4); // 24 calc
-	memoFactorial(4); // 24 from cache
+
+	// Initialize
+	$("#bMemoization").on("click", function () {
+
+		var tbValue = util.getValue("tbMemoization");
+		
+		if (isNaN(tbValue)) {
+			util.setError("vMemoization", "Data entry errors!");
+			return;
+		}
+
+		var number = parseFloat(tbValue);
+		var result = memoFactorial(number);
+
+		util.setValue("vMemoization", "Factorial: " + result);
+	});
 });

@@ -27,29 +27,29 @@ $(document).ready(function () {
 		var result = (value % 2) === 0;
 		return result;
 	}
-	function isAdultMan(person) {
-		var passed = person.age >= 18 && person.sex === "man";
-		return passed;
-	}
 
-	// Test examples
-	var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-	filter(array, odd); // [1, 3, 5, 7, 9]
-	filter(array, even); // [2, 4, 6, 8, 10]
+	// Test example
+	// Initialize
+	$("#bFilter").on("click", function () {
 
-	var people = [
-		{ name: "Michael", age: 18, sex: "man" },
-		{ name: "Matthew", age: 12, sex: "man" },
-		{ name: "Elizabeth", age: 27, sex: "woman" },
-		{ name: "Andrew", age: 78, sex: "man" },
-		{ name: "Alyssa", age: 13, sex: "woman" },
-		{ name: "William", age: 17, sex: "man" }
-	];
+		var strArray = util.getValue("tbFilter");
+		var array = util.parseArray(strArray);
 
-	filter(people, isAdultMan); // Michael,Andrew
+		if (!array) {
+			util.setError("vFilter", "Data entry error!");
+		}
 
-	// Other initialize
-	// ...
+		var result;
+
+		if (util.isChecked("rbFilterOdd")) {
+			result = filter(array, odd);
+		} else {
+			result = filter(array, even);
+		}
+
+		util.setValue("vFilter", "Result array: [" + result + "]");
+	});
+
 	// This is for Problem 7: Average of even numbers
 	window.filter = filter;
 });

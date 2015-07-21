@@ -19,34 +19,53 @@ $(document).ready(function () {
 	}
 
 	// Specific functions
-	function decrementer(value) {
-		var result = value - 1;
-		if (result) {
-			return result;
-		}
-		return false;
-	}
-	function incrementerOf10(value) {
-		if (value >= 10) {
-			return false;
-		}
-		var result = value + 1;
-		return result;
-	}
 	function incrementer(endValue) {
 		return function (value) {
-			if (value >= endValue) {
+			var result = value + 1;
+			if (result > endValue) {
 				return false;
 			}
-			var result = value + 1;
+			return result;
+		}
+	}
+	function doubler(endValue) {
+		return function (value) {
+			var result = value * 2;
+			if (result > endValue) {
+				return false;
+			}
 			return result;
 		}
 	}
 
-	// Test examples
-	unfolding(decrementer, 10); // [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+	// Test example
+	// Initialize
+	$("#bUnfold").on("click", function () {
 
-	unfolding(incrementerOf10, 5); // [5, 6, 7, 8, 9, 10]
+		var strStartState = util.getValue("tbUnfoldStartState");
+		var strMaxValue = util.getValue("tbUnfoldMaxValue");
 
-	unfolding(incrementer(5), -5); // [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
+		if (isNaN(strStartState) || isNaN(strMaxValue)) {
+			util.setError("vUnfold", "Data entry errors!");
+			return;
+		}
+
+		var startState = parseFloat(strStartState);
+		var maxValue = parseFloat(strMaxValue);
+
+		if (startState >= maxValue) {
+			util.setError("vUnfold", "Data entry errors!");
+			return;
+		}
+
+		var resultArray;
+
+		if (util.isChecked("rbUnfoldInc")) {
+			resultArray = unfolding(incrementer(maxValue), startState);
+		} else {
+			resultArray = unfolding(doubler(maxValue), startState);
+		}
+
+		util.setValue("vUnfold", "Result: " + resultArray);
+	});
 });
